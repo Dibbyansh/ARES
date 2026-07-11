@@ -1,0 +1,148 @@
+{
+  "teams": [
+    {
+      "id": "1",
+      "name": "Fire Response Team",
+      "type": "fire",
+      "location": "Zone A",
+      "personnel": 8,
+      "status": "available",
+      "capabilities": [
+        "fire suppression",
+        "rescue trapped individuals",
+        "hazard control",
+        "fire risk assessment"
+      ],
+      "priority": "high"
+    },
+    {
+      "id": "2",
+      "name": "Medical Emergency Team",
+      "type": "medical",
+      "location": "Zone B",
+      "personnel": 6,
+      "status": "available",
+      "capabilities": [
+        "first aid",
+        "triage",
+        "critical care stabilization",
+        "patient transport"
+      ],
+      "priority": "high"
+    },
+    {
+      "id": "3",
+      "name": "Search and Rescue Team",
+      "type": "rescue",
+      "location": "Zone A",
+      "personnel": 10,
+      "status": "available",
+      "capabilities": [
+        "locate missing persons",
+        "rescue from collapsed structures",
+        "evacuation support"
+      ],
+      "priority": "high"
+    },
+    {
+      "id": "4",
+      "name": "Police and Security Team",
+      "type": "security",
+      "location": "Zone C",
+      "personnel": 12,
+      "status": "available",
+      "capabilities": [
+        "crowd control",
+        "area security",
+        "traffic management",
+        "law enforcement coordination"
+      ],
+      "priority": "high"
+    },
+    {
+      "id": "5",
+      "name": "Flood Response Team",
+      "type": "flood",
+      "location": "Zone D",
+      "personnel": 7,
+      "status": "available",
+      "capabilities": [
+        "water rescue",
+        "boat operations",
+        "evacuation from flooded areas",
+        "relief distribution"
+      ],
+      "priority": "high"
+    },
+    {
+      "id": "6",
+      "name": "Utility Control Team",
+      "type": "utility",
+      "location": "Zone B",
+      "personnel": 5,
+      "status": "available",
+      "capabilities": [
+        "electricity shutdown",
+        "gas supply control",
+        "infrastructure safety checks"
+      ],
+      "priority": "medium"
+    },
+    {
+      "id": "7",
+      "name": "Logistics Support Team",
+      "type": "logistics",
+      "location": "Zone C",
+      "personnel": 6,
+      "status": "available",
+      "capabilities": [
+        "resource allocation",
+        "transport coordination",
+        "supplies distribution"
+      ],
+      "priority": "medium"
+    },
+    {
+      "id": "8",
+      "name": "Communication Team",
+      "type": "communication",
+      "location": "Control Room",
+      "personnel": 4,
+      "status": "available",
+      "capabilities": [
+        "internal coordination",
+        "public information updates",
+        "emergency alerts"
+      ],
+      "priority": "medium"
+    },
+    {
+      "id": "9",
+      "name": "Hazardous Materials Team",
+      "type": "hazmat",
+      "location": "Zone D",
+      "personnel": 5,
+      "status": "available",
+      "capabilities": [
+        "gas leak control",
+        "chemical hazard handling",
+        "decontamination"
+      ],
+      "priority": "high"
+    },
+    {
+      "id": "10",
+      "name": "Relief and Shelter Team",
+      "type": "relief",
+      "location": "Zone E",
+      "personnel": 9,
+      "status": "available",
+      "capabilities": [
+        "setup shelters",
+        "food and water distribution",
+        "basic care for displaced people"
+      ],
+      "priority": "medium"
+    }
+  ]
+}

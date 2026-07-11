@@ -1,0 +1,284 @@
+# 🚨 DISASTER MANAGEMENT TEAM
+
+## STANDARD OPERATING PROCEDURES (SOP)
+
+---
+
+## 1. INCIDENT RESPONSE FRAMEWORK (ALL DISASTERS)
+
+### Objective
+
+Ensure rapid, coordinated, and safe response to minimize casualties and damage.
+
+### Immediate Actions (First 5–10 Minutes)
+
+* Activate Incident Command System (ICS)
+* Assign Incident Commander (IC)
+* Identify:
+
+  * Type of incident
+  * Location
+  * Severity level
+* Alert all relevant units:
+
+  * Fire
+  * Medical
+  * Police
+  * Utility teams
+
+### Communication
+
+* Establish primary communication channel (radio/control room)
+* Share real-time updates across teams
+* Maintain a single source of truth
+
+### Area Control
+
+* Secure perimeter
+* Define zones:
+
+  * Hot Zone (danger area)
+  * Warm Zone (support operations)
+  * Cold Zone (safe area)
+
+---
+
+## 2. FIRE INCIDENT RESPONSE
+
+### Deployment
+
+* Dispatch fire units immediately
+* Assign teams:
+
+  * Fire suppression
+  * Search and rescue
+  * Evacuation support
+
+### Operations
+
+* Identify fire type (electrical, chemical, structural)
+* Contain fire spread
+* Conduct systematic search for trapped individuals
+
+### Support Actions
+
+* Shut down electricity and gas supply
+* Coordinate with facility management
+
+### Medical Coordination
+
+* Set up triage area
+* Categorize victims:
+
+  * Critical
+  * Moderate
+  * Minor
+
+### Public Control
+
+* Evacuate civilians in an orderly manner
+* Restrict crowd access
+
+---
+
+## 3. FLOOD RESPONSE
+
+### Deployment
+
+* Deploy rescue boats and evacuation teams
+* Position teams in high-risk zones
+
+### Operations
+
+* Identify flooded areas and stranded individuals
+* Prioritize rescue:
+
+  * Elderly
+  * Children
+  * Injured
+
+### Utility Control
+
+* Coordinate shutdown of electricity in affected areas
+
+### Evacuation
+
+* Relocate people to shelters or higher ground
+* Ensure safe evacuation routes
+
+### Health Measures
+
+* Distribute clean water and essential supplies
+* Monitor for disease outbreaks
+
+---
+
+## 4. ROAD ACCIDENT RESPONSE
+
+### Deployment
+
+* Dispatch ambulance and police immediately
+
+### Scene Assessment
+
+* Identify number of victims
+* Assess injury severity
+* Check for hazards (fuel leak, fire risk)
+
+### Medical Actions
+
+* Perform on-site triage
+* Stabilize critical patients
+* Transport to nearest hospital
+
+### Traffic Control
+
+* Secure accident site
+* Divert traffic
+* Prevent secondary accidents
+
+### Documentation
+
+* Record incident details
+* Coordinate with law enforcement
+
+---
+
+## 5. EARTHQUAKE RESPONSE
+
+### Deployment
+
+* Activate search and rescue teams
+* Deploy heavy equipment if required
+
+### Operations
+
+* Identify collapsed structures
+* Conduct systematic rescue operations
+
+### Risk Control
+
+* Monitor aftershocks
+* Mark unsafe structures
+
+### Medical Setup
+
+* Establish temporary medical camps
+* Handle mass casualty cases
+
+### Relief Support
+
+* Set up shelters
+* Provide food, water, and medical aid
+
+---
+
+## 6. ELECTRICAL INCIDENT RESPONSE
+
+### Safety
+
+* Ensure power supply is disconnected before intervention
+
+### Coordination
+
+* Work with electrical authorities
+
+### Medical
+
+* Treat electric shock victims
+* Perform CPR if required
+
+### Risk Prevention
+
+* Check for fire hazards due to electrical faults
+
+---
+
+## 7. GAS LEAK RESPONSE
+
+### Area Control
+
+* Evacuate affected area immediately
+* Establish safety perimeter
+
+### Operations
+
+* Identify source of leak
+* Coordinate with gas authorities to stop leak
+
+### Ventilation
+
+* Ensure proper airflow
+
+### Medical
+
+* Treat inhalation cases
+* Provide oxygen support if required
+
+---
+
+## 8. MEDICAL TRIAGE PROTOCOL
+
+### Priority Levels
+
+* Red (Critical): Immediate life-saving care
+* Yellow (Serious): Urgent but stable
+* Green (Minor): Minor injuries
+* Black: Deceased or beyond recovery
+
+### Actions
+
+* Tag victims clearly
+* Allocate resources based on priority
+
+---
+
+## 9. COMMUNICATION AND COORDINATION
+
+### Internal
+
+* Maintain constant communication between teams
+* Use clear and simple updates
+
+### External
+
+* Provide verified information to public
+* Avoid misinformation and panic
+
+---
+
+## 10. POST-INCIDENT ACTIONS
+
+### Assessment
+
+* Evaluate damage and response effectiveness
+
+### Reporting
+
+* Document:
+
+  * Timeline
+  * Actions taken
+  * Challenges faced
+
+### Improvement
+
+* Identify gaps
+* Update SOPs accordingly
+
+---
+
+## CORE PRINCIPLES
+
+* Safety of responders first
+* Coordination over individual action
+* Controlled and structured response
+* Clear communication at all times
+
+---
+
+## FINAL RULE
+
+A well-coordinated team saves more lives than a fast but unorganized response.
+
+---

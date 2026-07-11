@@ -21,17 +21,17 @@ You type an incident in plain English. The system:
 ```
 You type incident
        ↓
-   app.py  →  loads teams + guidelines
+app.py  →  loads teams + guidelines
        ↓
- Coordinator  →  runs agents in order
+Coordinator  →  runs agents in order
        ↓
- ┌─────────────────────────────────────┐
- │ Classifier → Planner → Assigner     │
- │      ↓          ↓          ↓        │
- │   Tracker → Alerter (if new)        │
- └─────────────────────────────────────┘
+┌─────────────────────────────────────┐
+│ Classifier → Planner → Assigner     │
+│      ↓          ↓          ↓        │
+│   Tracker → Alerter (if new)        │
+└─────────────────────────────────────┘
        ↓
-   PostgreSQL (saves everything)
+PostgreSQL (saves everything)
 ```
 
 `app.py` always runs the **LangGraph coordinator** (`core/coordinator_langgraph.py`), where an AI router decides which agent runs next.

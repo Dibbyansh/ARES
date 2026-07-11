@@ -43,29 +43,29 @@ You type incident
 ## Project Structure
 
 ```
-├── app.py                  # Start here — CLI entry point
-├── config.py               # Loads .env settings
-├── evaluation.py            # Evaluates LLM response correctness — not yet wired in, in progress
+├── app.py                         # Start here — CLI entry point
+├── config.py                      # Loads .env settings
+├── evaluation.py                  # Evaluates LLM response correctness — not yet wired in, in progress
 ├── core/
-│   ├── coordinator.py       # Simple sequential flow (not wired into app.py — kept for reference)
-│   └── coordinator_langgraph.py # AI-routed LangGraph flow (used by app.py)
+│   ├── coordinator.py             # Simple sequential flow (not wired into app.py — kept for reference)
+│   └── coordinator_langgraph.py   # AI-routed LangGraph flow (used by app.py)
 ├── agents/
-│   ├── classifier.py       # Classify incident
-│   ├── planner.py          # Generate tasks (uses RAG)
-│   ├── assigner.py         # Match teams to tasks
-│   ├── tracker.py          # Update task/incident status
-│   └── alerter.py          # Send Telegram alert
+│   ├── classifier.py              # Classify incident
+│   ├── planner.py                 # Generate tasks (uses RAG)
+│   ├── assigner.py                # Match teams to tasks
+│   ├── tracker.py                 # Update task/incident status
+│   └── alerter.py                 # Send Telegram alert
 ├── tools/
-│   ├── llm.py              # OpenRouter AI calls
-│   ├── db.py               # PostgreSQL operations
-│   ├── rag.py              # ChromaDB guideline search
-│   └── telegram.py         # Telegram notifications
+│   ├── llm.py                     # OpenRouter AI calls
+│   ├── db.py                      # PostgreSQL operations
+│   ├── rag.py                     # ChromaDB guideline search
+│   └── telegram.py                # Telegram notifications
 ├── utils/
-│   └── json_parser.py       # Strips code fences, parses AI JSON responses
-├── teams.json              # Emergency teams roster
-├── docs.txt                # Emergency guidelines (one per line)
-├── schema.sql              # Database tables
-└── .env.example            # Copy to .env and fill in
+│   └── json_parser.py             # Strips code fences, parses AI JSON responses
+├── teams.json                     # Emergency teams roster
+├── docs.txt                       # Emergency guidelines (one per line)
+├── schema.sql                     # Database tables
+└── .env.example                   # Copy to .env and fill in
 ```
 
 ---

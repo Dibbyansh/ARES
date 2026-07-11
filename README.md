@@ -7,6 +7,7 @@ A Python project that uses AI to handle emergency incidents: classify them, plan
 ## What It Does
 
 You type an incident in plain English. The system:
+
 1. **Classifies** it — type, severity, location, risks
 2. **Plans** response tasks using emergency guidelines (RAG)
 3. **Assigns** available teams to each task
@@ -20,22 +21,22 @@ You type an incident in plain English. The system:
 ```
 You type incident
        ↓
-app.py  →  loads teams + guidelines
+   app.py  →  loads teams + guidelines
        ↓
-Coordinator  →  runs agents based on situation
+ Coordinator  →  runs agents in order
        ↓
-┌─────────────────────────────────────┐
-│ Classifier → Planner → Assigner     │
-│      ↓          ↓          ↓        │
-│   Tracker → Alerter (if new)        │
-└─────────────────────────────────────┘
+ ┌─────────────────────────────────────┐
+ │ Classifier → Planner → Assigner     │
+ │      ↓          ↓          ↓        │
+ │   Tracker → Alerter (if new)        │
+ └─────────────────────────────────────┘
        ↓
-PostgreSQL (saves everything)
+   PostgreSQL (saves everything)
 ```
 
-`app.py` uses the LangGraph-based coordinator (`coordinator_langgraph.py`) as the primary orchestration engine, where an AI router dynamically determines which agent executes next.
+`app.py` always runs the **LangGraph coordinator** (`core/coordinator_langgraph.py`), where an AI router decides which agent runs next.
 
-`coordinator.py` (fixed, step-by-step ordering, no AI routing) is kept in the repo for learning and reference purposes but is not wired into `app.py`.
+`core/coordinator.py` (fixed, step-by-step ordering, no AI routing) is kept in the repo for reference but is not wired into `app.py`.
 
 ---
 
@@ -43,9 +44,11 @@ PostgreSQL (saves everything)
 
 ```
 ├── app.py                  # Start here — CLI entry point
-├── coordinator.py          # Simple sequential flow
-├── coordinator_langgraph.py # AI-routed LangGraph flow
 ├── config.py               # Loads .env settings
+├── evaluation.py            # Evaluates LLM response correctness — not yet wired in, in progress
+├── core/
+│   ├── coordinator.py       # Simple sequential flow (not wired into app.py — kept for reference)
+│   └── coordinator_langgraph.py # AI-routed LangGraph flow (used by app.py)
 ├── agents/
 │   ├── classifier.py       # Classify incident
 │   ├── planner.py          # Generate tasks (uses RAG)
@@ -57,6 +60,8 @@ PostgreSQL (saves everything)
 │   ├── db.py               # PostgreSQL operations
 │   ├── rag.py              # ChromaDB guideline search
 │   └── telegram.py         # Telegram notifications
+├── utils/
+│   └── json_parser.py       # Strips code fences, parses AI JSON responses
 ├── teams.json              # Emergency teams roster
 ├── docs.txt                # Emergency guidelines (one per line)
 ├── schema.sql              # Database tables
@@ -106,7 +111,7 @@ Edit `.env` — fill in at minimum:
 ```env
 OPENROUTER_API_KEY=your_key_here
 OPENROUTER_BASE_URL=https://openrouter.ai/api/v1
-MODEL=openai/gpt-4o-mini
+MODEL=model
 DB_HOST=localhost
 DB_PORT=5432
 DB_NAME=ares
@@ -175,7 +180,6 @@ Status: active
 ```
 
 **Follow-up inputs** the system understands:
-
 - `"Update on incident 1: fire spreading"` → links to existing incident
 - `"Incident 1 is under control"` → stabilizing
 - `"Incident 1 resolved, all clear"` → closes incident

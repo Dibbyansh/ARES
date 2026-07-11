@@ -1,7 +1,7 @@
 # Entry point — interactive CLI for the emergency response system
 import json
 
-from coordinator_langgraph import handle_incident_with_langgraph
+from core.coordinator_langgraph import handle_incident_with_langgraph
 from tools.rag import load_knowledge_base, knowledge_base_count
 from tools.db import load_teams_from_file
 

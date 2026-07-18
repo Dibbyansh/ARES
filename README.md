@@ -12,31 +12,51 @@ You type an incident in plain English. The system:
 2. **Plans** response tasks using emergency guidelines (RAG)
 3. **Assigns** available teams to each task
 4. **Tracks** status — activate, stabilize, or close
-5. **Alerts** via Telegram (optional)
+5. **Alerts** via Telegram (optional, new incidents only)
 
 ---
 
 ## How It Works
 
+Startup (once, before any incident is processed):
+
+```
+app.py
+  ├─ seeds teams.json → PostgreSQL (if teams table is empty)
+  └─ indexes docs.txt  → ChromaDB    (if collection is empty)
+```
+
+Per incident (every time you type something at the `ARES>` prompt):
+
 ```
 You type incident
        ↓
-app.py  →  loads teams + guidelines
+handle_incident_with_langgraph()
        ↓
-Coordinator  →  runs agents in order
+┌─────────────────────────────────────────────────────┐
+│                 Router (AI)                         │◄─┐
+│   Reads current state + action history.             │  │
+│   Decides the ONE next node to run. Max 10 steps.   │  │
+└─────────────────────────────────────────────────────┘  │
+       │                                                 │
+       ├─→ classifier             (writes incidents / incident_updates → PostgreSQL)
+       ├─→ planner                (reads guidelines ← ChromaDB, writes tasks → PostgreSQL)
+       ├─→ assigner               (reads teams ← PostgreSQL, writes assignments → PostgreSQL)
+       ├─→ tracker_activate       (updates task status → PostgreSQL)
+       ├─→ tracker_stabilize      (completes urgent tasks → PostgreSQL)
+       ├─→ tracker_close          (completes all tasks, closes incident → PostgreSQL)
+       ├─→ alerter                (sends message → Telegram, no DB write)
+       │
+       └── every node above returns to the Router ───────┘
        ↓
-┌─────────────────────────────────────┐
-│ Classifier → Planner → Assigner     │
-│      ↓          ↓          ↓        │
-│   Tracker → Alerter (if new)        │
-└─────────────────────────────────────┘
+Router returns "done" (or hits the 10-step cap)
        ↓
-PostgreSQL (saves everything)
+Final state printed as summary
 ```
 
-`app.py` always runs the **LangGraph coordinator** (`core/coordinator_langgraph.py`), where an AI router decides which agent runs next.
+**This is not a fixed pipeline.** There is no hardcoded "Classifier → Planner → Assigner → Tracker → Alerter" order. `core/coordinator_langgraph.py`'s router node makes a fresh LLM call after every step to decide what runs next, using rules embedded in its prompt (classify first, plan after classification, assign after planning, alert only for brand-new incidents, use `tracker_close` for resolve events, stop when done). The actual path taken depends on the incident's `event_type`:
 
-`core/coordinator.py` (fixed, step-by-step ordering, no AI routing) is kept in the repo for reference but is not wired into `app.py`.
+`app.py` always runs the **LangGraph coordinator** (`core/coordinator_langgraph.py`). `core/coordinator.py` (the old fixed-order coordinator with no AI routing) still exists in the repo but is not imported by `app.py` — it's kept for reference only.
 
 ---
 
@@ -136,36 +156,15 @@ Type an incident at the `ARES>` prompt. Type `exit` to quit.
 ```
 ARES> Major fire at warehouse on 5th Street. Workers may be trapped.
 
-⚡ Processing incident...
+⚡ Processing with LangGraph...
 ------------------------------------------------------------
 
-🔍 Step 1: Classifying incident...
-   Type: new
-   Category: fire
-   Severity: high
-   Location: Warehouse, 5th Street
-
-📋 Step 2: Planning response tasks...
-   Generated 4 tasks:
-   1. [HIGH] Evacuate all occupants immediately
-   2. [HIGH] Establish water supply for suppression
-   3. [HIGH] Search and rescue trapped workers
-   4. [MEDIUM] Set up perimeter and traffic control
-
-🧑‍🚒 Step 3: Assigning teams to tasks...
-   Assigned 4 teams:
-   - Fire Response Team → Evacuate all occupants immediately
-   - Engine Company 1 → Establish water supply for suppression
-   - Search & Rescue Unit → Search and rescue trapped workers
-   - Police Unit → Set up perimeter and traffic control
-
-📊 Step 4: Activating teams...
-   ✓ Teams are now working on their tasks
-
-🚨 Step 5: Sending alert...
-   ✓ Alert sent (if Telegram is configured)
-
-✅ Processing complete!
+🔍 Classifying incident...
+📋 Planning response tasks...
+🧑‍🚒 Assigning teams...
+📊 Activating teams...
+🚨 Sending alert...
+✓ Workflow complete!
 
 ============================================================
 INCIDENT SUMMARY
@@ -175,6 +174,19 @@ Type: new
 Category: fire
 Severity: high
 Location: Warehouse, 5th Street
+
+Tasks (4):
+  1. [HIGH] Evacuate all occupants immediately
+  2. [HIGH] Establish water supply for suppression
+  3. [HIGH] Search and rescue trapped workers
+  4. [MEDIUM] Set up perimeter and traffic control
+
+Team Assignments:
+  - Fire Response Team → Evacuate all occupants immediately
+  - Engine Company 1 → Establish water supply for suppression
+  - Search & Rescue Unit → Search and rescue trapped workers
+  - Police Unit → Set up perimeter and traffic control
+
 Status: active
 ============================================================
 ```
